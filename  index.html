@@ -1,0 +1,1056 @@
+{\rtf1\ansi\ansicpg950\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="zh-TW">\
+<head>\
+<meta charset="UTF-8">\
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">\
+<title>\uc0\u39636 \u33021 \u20043 \u24020 \u12539 \u27963 \u21205 \u22238 \u39243 \u21839 \u21367 </title>\
+<style>\
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');\
+\
+  :root \{\
+    --bg: #0a0a0f;\
+    --surface: #111118;\
+    --card: #16161f;\
+    --border: rgba(255,255,255,0.06);\
+    --accent: #e8ff00;\
+    --accent2: #ff3c5f;\
+    --text: #f0f0f0;\
+    --muted: #666;\
+    --input-bg: #0e0e16;\
+    --input-border: rgba(255,255,255,0.1);\
+    --input-focus: rgba(232,255,0,0.35);\
+  \}\
+\
+  * \{ margin: 0; padding: 0; box-sizing: border-box; \}\
+\
+  body \{\
+    background: var(--bg);\
+    color: var(--text);\
+    font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;\
+    min-height: 100vh;\
+    overflow-x: hidden;\
+    -webkit-text-size-adjust: 100%;\
+  \}\
+\
+  body::before \{\
+    content: '';\
+    position: fixed;\
+    inset: 0;\
+    background-image:\
+      linear-gradient(rgba(232,255,0,0.03) 1px, transparent 1px),\
+      linear-gradient(90deg, rgba(232,255,0,0.03) 1px, transparent 1px);\
+    background-size: 60px 60px;\
+    pointer-events: none;\
+    z-index: 0;\
+  \}\
+\
+  /* \uc0\u9472 \u9472  Hero \u9472 \u9472  */\
+  .hero \{\
+    position: relative;\
+    z-index: 1;\
+    text-align: center;\
+    padding: 60px 24px 40px;\
+  \}\
+\
+  .hero-badge \{\
+    display: inline-block;\
+    font-size: 11px;\
+    font-weight: 700;\
+    letter-spacing: 3px;\
+    text-transform: uppercase;\
+    color: var(--accent);\
+    border: 1px solid var(--accent);\
+    padding: 5px 16px;\
+    margin-bottom: 18px;\
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);\
+  \}\
+\
+  .hero-title \{\
+    font-family: 'Bebas Neue', 'Arial Black', 'Impact', sans-serif;\
+    font-size: clamp(52px, 12vw, 100px);\
+    line-height: 0.9;\
+    letter-spacing: 2px;\
+    color: var(--text);\
+  \}\
+\
+  .hero-title span \{ color: var(--accent); display: block; \}\
+\
+  .hero-desc \{\
+    margin-top: 20px;\
+    font-size: 13px;\
+    color: var(--muted);\
+    line-height: 1.8;\
+    max-width: 460px;\
+    margin-left: auto;\
+    margin-right: auto;\
+  \}\
+\
+  .hero-desc em \{\
+    color: var(--accent);\
+    font-style: normal;\
+    font-weight: 700;\
+  \}\
+\
+  /* \uc0\u9472 \u9472  Form container \u9472 \u9472  */\
+  .form-wrap \{\
+    position: relative;\
+    z-index: 1;\
+    max-width: 720px;\
+    margin: 0 auto;\
+    padding: 0 20px 80px;\
+  \}\
+\
+  /* \uc0\u9472 \u9472  Section \u9472 \u9472  */\
+  .section \{\
+    margin-bottom: 12px;\
+  \}\
+\
+  .section-header \{\
+    display: flex;\
+    align-items: center;\
+    gap: 14px;\
+    padding: 20px 24px 16px;\
+    background: var(--card);\
+    border: 1px solid var(--border);\
+    border-bottom: none;\
+    position: relative;\
+  \}\
+\
+  .section-header::before \{\
+    content: '';\
+    position: absolute;\
+    top: 0; left: 0; right: 0;\
+    height: 2px;\
+    background: var(--accent);\
+  \}\
+\
+  .section-num \{\
+    font-family: 'Bebas Neue', 'Arial Black', sans-serif;\
+    font-size: 13px;\
+    color: #000;\
+    background: var(--accent);\
+    width: 28px;\
+    height: 28px;\
+    display: flex;\
+    align-items: center;\
+    justify-content: center;\
+    flex-shrink: 0;\
+    clip-path: polygon(3px 0%, 100% 0%, calc(100% - 3px) 100%, 0% 100%);\
+  \}\
+\
+  .section-title \{\
+    font-size: 13px;\
+    font-weight: 700;\
+    letter-spacing: 1.5px;\
+    text-transform: uppercase;\
+    color: var(--text);\
+  \}\
+\
+  /* \uc0\u9472 \u9472  Question card \u9472 \u9472  */\
+  .q-card \{\
+    background: var(--card);\
+    border: 1px solid var(--border);\
+    border-top: none;\
+    padding: 20px 24px;\
+  \}\
+\
+  .q-card + .q-card \{\
+    border-top: 1px solid var(--border);\
+  \}\
+\
+  .q-card:last-child \{\
+    border-bottom: 1px solid var(--border);\
+  \}\
+\
+  .q-label \{\
+    font-size: 13px;\
+    font-weight: 500;\
+    color: var(--text);\
+    margin-bottom: 14px;\
+    line-height: 1.6;\
+    display: flex;\
+    gap: 8px;\
+  \}\
+\
+  .q-num \{\
+    color: var(--accent);\
+    font-weight: 700;\
+    flex-shrink: 0;\
+  \}\
+\
+  .optional \{\
+    font-size: 10px;\
+    color: var(--muted);\
+    font-weight: 400;\
+    margin-left: 4px;\
+  \}\
+\
+  /* \uc0\u9472 \u9472  Radio / Choice pills \u9472 \u9472  */\
+  .choices \{\
+    display: flex;\
+    flex-wrap: wrap;\
+    gap: 8px;\
+  \}\
+\
+  .choice-input \{ display: none; \}\
+\
+  .choice-label \{\
+    display: inline-flex;\
+    align-items: center;\
+    padding: 7px 14px;\
+    font-size: 12px;\
+    color: #aaa;\
+    border: 1px solid var(--input-border);\
+    cursor: pointer;\
+    transition: all 0.18s;\
+    clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);\
+    user-select: none;\
+  \}\
+\
+  .choice-input:checked + .choice-label \{\
+    background: var(--accent);\
+    color: #000;\
+    border-color: var(--accent);\
+    font-weight: 700;\
+  \}\
+\
+  .choice-label:hover \{\
+    border-color: rgba(232,255,0,0.4);\
+    color: var(--text);\
+  \}\
+\
+  /* \uc0\u9472 \u9472  Star / Number rating \u9472 \u9472  */\
+  .rating-row \{\
+    display: flex;\
+    align-items: center;\
+    gap: 6px;\
+    margin-bottom: 10px;\
+    flex-wrap: wrap;\
+  \}\
+\
+  .rating-row-label \{\
+    font-size: 12px;\
+    color: #aaa;\
+    min-width: 140px;\
+    flex-shrink: 0;\
+  \}\
+\
+  .rating-dots \{\
+    display: flex;\
+    gap: 6px;\
+  \}\
+\
+  .rating-input \{ display: none; \}\
+\
+  .rating-label \{\
+    width: 34px;\
+    height: 34px;\
+    display: flex;\
+    align-items: center;\
+    justify-content: center;\
+    font-size: 13px;\
+    font-weight: 700;\
+    color: #555;\
+    border: 1px solid rgba(255,255,255,0.08);\
+    cursor: pointer;\
+    transition: all 0.15s;\
+    clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);\
+  \}\
+\
+  .rating-input:checked + .rating-label \{\
+    background: var(--accent);\
+    color: #000;\
+    border-color: var(--accent);\
+  \}\
+\
+  .rating-label:hover \{\
+    border-color: rgba(232,255,0,0.4);\
+    color: var(--text);\
+  \}\
+\
+  /* Simple 1\'965 row (no sub-label) */\
+  .simple-rating \{\
+    display: flex;\
+    gap: 6px;\
+    flex-wrap: wrap;\
+  \}\
+\
+  /* \uc0\u9472 \u9472  Textarea / Input \u9472 \u9472  */\
+  textarea, input[type="text"] \{\
+    width: 100%;\
+    background: var(--input-bg);\
+    border: 1px solid var(--input-border);\
+    color: var(--text);\
+    font-family: inherit;\
+    font-size: 13px;\
+    padding: 12px 14px;\
+    resize: vertical;\
+    outline: none;\
+    transition: border-color 0.2s;\
+    line-height: 1.6;\
+    margin-top: 6px;\
+  \}\
+\
+  textarea:focus, input[type="text"]:focus \{\
+    border-color: rgba(232,255,0,0.5);\
+    box-shadow: 0 0 0 2px rgba(232,255,0,0.08);\
+  \}\
+\
+  textarea::placeholder, input[type="text"]::placeholder \{\
+    color: #3a3a4a;\
+  \}\
+\
+  /* Sub-question block */\
+  .sub-block \{\
+    margin-top: 14px;\
+    padding-top: 14px;\
+    border-top: 1px solid rgba(255,255,255,0.05);\
+  \}\
+\
+  .sub-label \{\
+    font-size: 11px;\
+    color: var(--muted);\
+    margin-bottom: 8px;\
+    letter-spacing: 0.5px;\
+  \}\
+\
+  /* \uc0\u9472 \u9472  Submit \u9472 \u9472  */\
+  .submit-wrap \{\
+    text-align: center;\
+    padding-top: 32px;\
+  \}\
+\
+  .submit-btn \{\
+    font-family: 'Noto Sans TC', sans-serif;\
+    font-size: 14px;\
+    font-weight: 700;\
+    letter-spacing: 2px;\
+    color: #000;\
+    background: var(--accent);\
+    border: none;\
+    padding: 14px 48px;\
+    cursor: pointer;\
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);\
+    transition: opacity 0.2s, transform 0.15s;\
+  \}\
+\
+  .submit-btn:hover \{ opacity: 0.88; transform: translateY(-2px); \}\
+  .submit-btn:active \{ transform: translateY(0); \}\
+  .submit-btn:disabled \{ opacity: 0.4; cursor: not-allowed; transform: none; \}\
+\
+  /* Submit emoji cursor */\
+  #submitEmojiCursor \{\
+    position: fixed;\
+    pointer-events: none;\
+    font-size: 28px;\
+    z-index: 9999;\
+    transform: translate(10px, 10px);\
+    display: none;\
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));\
+    animation: floatUp 0.6s infinite alternate ease-in-out;\
+  \}\
+\
+  @keyframes floatUp \{\
+    from \{ transform: translate(10px, 10px); \}\
+    to   \{ transform: translate(10px, 2px); \}\
+  \}\
+\
+  /* Thank you modal */\
+  #thanksModal \{\
+    display: none;\
+    position: fixed;\
+    inset: 0;\
+    z-index: 1000;\
+    background: rgba(0,0,0,0.82);\
+    backdrop-filter: blur(6px);\
+    align-items: center;\
+    justify-content: center;\
+    padding: 16px;\
+  \}\
+\
+  .thanks-box \{\
+    background: #16161f;\
+    border: 1px solid rgba(255,255,255,0.08);\
+    border-top: 2px solid var(--accent);\
+    width: min(520px, 100%);\
+    padding: 32px 28px 28px;\
+    text-align: center;\
+    animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both;\
+  \}\
+\
+  @keyframes popIn \{\
+    from \{ transform: scale(0.88); opacity: 0; \}\
+    to   \{ transform: scale(1); opacity: 1; \}\
+  \}\
+\
+  .thanks-icon \{ font-size: 44px; margin-bottom: 14px; \}\
+\
+  .thanks-title \{\
+    font-size: 16px;\
+    font-weight: 700;\
+    color: var(--text);\
+    line-height: 1.6;\
+    margin-bottom: 20px;\
+  \}\
+\
+  .thanks-divider \{\
+    height: 1px;\
+    background: rgba(255,255,255,0.06);\
+    margin: 20px 0;\
+  \}\
+\
+  .thanks-cta-label \{\
+    font-size: 11px;\
+    color: var(--muted);\
+    letter-spacing: 1px;\
+    text-transform: uppercase;\
+    margin-bottom: 10px;\
+  \}\
+\
+  .thanks-cta-desc \{\
+    font-size: 13px;\
+    color: #aaa;\
+    line-height: 1.7;\
+    margin-bottom: 18px;\
+  \}\
+\
+  .thanks-link-btn \{\
+    display: inline-block;\
+    padding: 11px 28px;\
+    background: var(--accent);\
+    color: #000;\
+    font-size: 13px;\
+    font-weight: 700;\
+    text-decoration: none;\
+    letter-spacing: 1px;\
+    clip-path: polygon(7px 0%,100% 0%,calc(100% - 7px) 100%,0% 100%);\
+    transition: opacity 0.2s;\
+  \}\
+\
+  .thanks-link-btn:hover \{ opacity: 0.85; \}\
+\
+  .thanks-close-btn \{\
+    display: block;\
+    margin: 14px auto 0;\
+    background: none;\
+    border: none;\
+    color: var(--muted);\
+    font-size: 12px;\
+    cursor: pointer;\
+    font-family: inherit;\
+    letter-spacing: 0.5px;\
+    text-decoration: underline;\
+    text-underline-offset: 3px;\
+  \}\
+\
+  .thanks-close-btn:hover \{ color: var(--text); \}\
+\
+  .submit-note \{\
+    font-size: 11px;\
+    color: var(--muted);\
+    margin-top: 12px;\
+    line-height: 1.7;\
+  \}\
+\
+  /* \uc0\u9472 \u9472  Success screen \u9472 \u9472  */\
+  #successScreen \{\
+    display: none;\
+    position: fixed;\
+    inset: 0;\
+    background: var(--bg);\
+    z-index: 200;\
+    flex-direction: column;\
+    align-items: center;\
+    justify-content: center;\
+    text-align: center;\
+    padding: 24px;\
+  \}\
+\
+  .success-icon \{\
+    font-size: 56px;\
+    margin-bottom: 20px;\
+    animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;\
+  \}\
+\
+  @keyframes popIn \{\
+    from \{ transform: scale(0); opacity: 0; \}\
+    to   \{ transform: scale(1); opacity: 1; \}\
+  \}\
+\
+  .success-title \{\
+    font-family: 'Bebas Neue', 'Arial Black', sans-serif;\
+    font-size: 52px;\
+    color: var(--accent);\
+    letter-spacing: 2px;\
+    line-height: 1;\
+    margin-bottom: 12px;\
+  \}\
+\
+  .success-sub \{\
+    font-size: 13px;\
+    color: var(--muted);\
+    line-height: 1.8;\
+    max-width: 360px;\
+  \}\
+\
+  /* \uc0\u9472 \u9472  Error msg \u9472 \u9472  */\
+  .error-msg \{\
+    display: none;\
+    color: #ff3c5f;\
+    font-size: 11px;\
+    margin-top: 6px;\
+  \}\
+\
+  /* \uc0\u9472 \u9472  Divider \u9472 \u9472  */\
+  .section-gap \{ height: 24px; \}\
+\
+  /* \uc0\u9472 \u9472  Responsive \u9472 \u9472  */\
+  @media (max-width: 640px) \{\
+    .hero \{ padding: 40px 16px 28px; \}\
+    .form-wrap \{ padding: 0 12px 60px; \}\
+    .q-card \{ padding: 16px; \}\
+    .section-header \{ padding: 16px; \}\
+    .rating-row-label \{ min-width: 110px; font-size: 11px; \}\
+    .rating-label \{ width: 30px; height: 30px; font-size: 12px; \}\
+    .choice-label \{ font-size: 11px; padding: 6px 10px; \}\
+  \}\
+</style>\
+</head>\
+<body>\
+\
+<!-- Submit emoji cursor -->\
+<div id="submitEmojiCursor">\uc0\u55358 \u56760 </div>\
+\
+<!-- Thank you modal -->\
+<div id="thanksModal">\
+  <div class="thanks-box">\
+    <div class="thanks-icon">\uc0\u55356 \u57225 </div>\
+    <div class="thanks-title">\uc0\u24863 \u35613 \u24744 \u30340 \u21453 \u39243 <br>\u25105 \u20497 \u24050 \u25910 \u21040 \u24744 \u30340 \u22238 \u35206 \u22217 \u65281 </div>\
+    <div class="thanks-divider"></div>\
+    <div class="thanks-cta-label">\uc0\u10022  \u31070 \u38538 \u21451 \u24863 \u35613 \u29254  \u10022 </div>\
+    <div class="thanks-cta-desc">\
+      \uc0\u36939 \u21205 \u26371 \u32080 \u26463 \u20102 \u65292 \u20294 \u24863 \u35613 \u19981 \u35442 \u20572 \u19979 \u20358 \u65281 <br>\
+      \uc0\u25226 \u36889 \u27425 \u24819 \u24863 \u35613 \u30340 \u38538 \u21451 \u12289 \u22821 \u20276 \u37117 \u30041 \u22312 \u24863 \u35613 \u29254 \u19978 \u21543  \u55357 \u56908 \
+    </div>\
+    <a href="https://events.swag.app/swag_thanks/" target="_blank" class="thanks-link-btn">\uc0\u21069 \u24448 \u31070 \u38538 \u21451 \u24863 \u35613 \u29254  \u9654 </a>\
+    <button class="thanks-close-btn" id="thanksCloseBtn">\uc0\u38364 \u38281 </button>\
+  </div>\
+</div>\
+\
+<!-- Success screen -->\
+<div id="successScreen">\
+  <div class="success-icon">\uc0\u55356 \u57286 </div>\
+  <div class="success-title">\uc0\u24863 \u35613 \u22238 \u39243 \u65281 </div>\
+  <div class="success-sub">\uc0\u20320 \u30340 \u24847 \u35211 \u24050 \u25104 \u21151 \u36865 \u20986 <br>\u25105 \u20497 \u26371 \u35731 \u19979 \u19968 \u23622 \u26356 \u26834  \u55357 \u56490 <br><br>\
+    <span style="color:var(--accent);font-size:11px;letter-spacing:1px;">SWAG \uc0\u31119 \u22996 \u26371  \'b7 \u39636 \u33021 \u20043 \u24020 </span>\
+  </div>\
+</div>\
+\
+<!-- Hero -->\
+<section class="hero">\
+  <div class="hero-badge">\uc0\u31532 \u20108 \u23622 \u36939 \u21205 \u26371  \'b7 June 2026</div>\
+  <h1 class="hero-title">\uc0\u39636 \u33021 <span>\u20043 \u24020 </span></h1>\
+  <p class="hero-desc">\uc0\u24863 \u35613 \u20320 \u20170 \u22825 \u30340 \u21443 \u33287 \u65281 \u35531 \u33457  <em>3 \u20998 \u37912 </em> \u22635 \u23531 \u20197 \u19979 \u21839 \u38988 <br>\u24171 \u21161 \u25105 \u20497 \u35731 \u19979 \u19968 \u23622 \u26356 \u26834  \u55357 \u56908 </p>\
+</section>\
+\
+<!-- Form -->\
+<div class="form-wrap">\
+<form id="surveyForm" novalidate>\
+\
+  <!-- \uc0\u9312  \u25972 \u39636 \u39636 \u39511  -->\
+  <div class="section">\
+    <div class="section-header">\
+      <div class="section-num">\uc0\u19968 </div>\
+      <div class="section-title">\uc0\u25972 \u39636 \u39636 \u39511 </div>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q1.</span>\uc0\u20320 \u23565 \u36889 \u27425 \u36939 \u21205 \u26371 \u30340 \u25972 \u39636 \u28415 \u24847 \u24230 \u65311 </div>\
+      <div class="choices">\
+        <input type="radio" name="q1" id="q1_1" value="\uc0\u38750 \u24120 \u19981 \u28415 \u24847 " class="choice-input">\
+        <label for="q1_1" class="choice-label">\uc0\u38750 \u24120 \u19981 \u28415 \u24847 </label>\
+        <input type="radio" name="q1" id="q1_2" value="\uc0\u19981 \u28415 \u24847 " class="choice-input">\
+        <label for="q1_2" class="choice-label">\uc0\u19981 \u28415 \u24847 </label>\
+        <input type="radio" name="q1" id="q1_3" value="\uc0\u26222 \u36890 " class="choice-input">\
+        <label for="q1_3" class="choice-label">\uc0\u26222 \u36890 </label>\
+        <input type="radio" name="q1" id="q1_4" value="\uc0\u28415 \u24847 " class="choice-input">\
+        <label for="q1_4" class="choice-label">\uc0\u28415 \u24847 </label>\
+        <input type="radio" name="q1" id="q1_5" value="\uc0\u38750 \u24120 \u28415 \u24847 " class="choice-input">\
+        <label for="q1_5" class="choice-label">\uc0\u38750 \u24120 \u28415 \u24847 </label>\
+      </div>\
+      <div class="error-msg" id="err_q1">\uc0\u35531 \u36984 \u25799 \u19968 \u38917 </div>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q2.</span>\uc0\u36889 \u27425 \u27963 \u21205 \u35731 \u20320 \u23565 \u21516 \u20107 \u30340 \u35469 \u35672 \u25110 \u24863 \u24773 \u26377 \u21152 \u28145 \u21966 \u65311 </div>\
+      <div class="choices">\
+        <input type="radio" name="q3" id="q3_1" value="\uc0\u23436 \u20840 \u27794 \u26377 " class="choice-input">\
+        <label for="q3_1" class="choice-label">\uc0\u23436 \u20840 \u27794 \u26377 </label>\
+        <input type="radio" name="q3" id="q3_2" value="\uc0\u19968 \u40670 \u40670 " class="choice-input">\
+        <label for="q3_2" class="choice-label">\uc0\u19968 \u40670 \u40670 </label>\
+        <input type="radio" name="q3" id="q3_3" value="\uc0\u26377 \u20123 " class="choice-input">\
+        <label for="q3_3" class="choice-label">\uc0\u26377 \u20123 </label>\
+        <input type="radio" name="q3" id="q3_4" value="\uc0\u24456 \u26126 \u39023 " class="choice-input">\
+        <label for="q3_4" class="choice-label">\uc0\u24456 \u26126 \u39023 </label>\
+      </div>\
+      <div class="error-msg" id="err_q2">\uc0\u35531 \u36984 \u25799 \u19968 \u38917 </div>\
+    </div>\
+  </div>\
+\
+  <!-- \uc0\u9313  \u38364 \u21345 \u20839 \u23481  -->\
+  <div class="section">\
+    <div class="section-header">\
+      <div class="section-num">\uc0\u20108 </div>\
+      <div class="section-title">\uc0\u38364 \u21345 \u20839 \u23481 </div>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q3.</span>\uc0\u35531 \u28858 \u20197 \u19979 \u21508 \u38364 \u21345 \u35413 \u20998 \u65288 1 \u19981 \u28415 \u24847  \u8594  5 \u28415 \u24847 \u65289 </div>\
+      <!-- \uc0\u33729 \u33521 \u25361 \u25136 \u36093  -->\
+      <div class="rating-row">\
+        <div class="rating-row-label">\uc0\u33729 \u33521 \u25361 \u25136 \u36093 </div>\
+        <div class="rating-dots">\
+          <input type="radio" name="q4_a" id="q4a1" value="1" class="rating-input"><label for="q4a1" class="rating-label">1</label>\
+          <input type="radio" name="q4_a" id="q4a2" value="2" class="rating-input"><label for="q4a2" class="rating-label">2</label>\
+          <input type="radio" name="q4_a" id="q4a3" value="3" class="rating-input"><label for="q4a3" class="rating-label">3</label>\
+          <input type="radio" name="q4_a" id="q4a4" value="4" class="rating-input"><label for="q4a4" class="rating-label">4</label>\
+          <input type="radio" name="q4_a" id="q4a5" value="5" class="rating-input"><label for="q4a5" class="rating-label">5</label>\
+        </div>\
+      </div>\
+      <!-- \uc0\u22235 \u38754 \u20843 \u32763  -->\
+      <div class="rating-row">\
+        <div class="rating-row-label">\uc0\u22235 \u38754 \u20843 \u32763 </div>\
+        <div class="rating-dots">\
+          <input type="radio" name="q4_b" id="q4b1" value="1" class="rating-input"><label for="q4b1" class="rating-label">1</label>\
+          <input type="radio" name="q4_b" id="q4b2" value="2" class="rating-input"><label for="q4b2" class="rating-label">2</label>\
+          <input type="radio" name="q4_b" id="q4b3" value="3" class="rating-input"><label for="q4b3" class="rating-label">3</label>\
+          <input type="radio" name="q4_b" id="q4b4" value="4" class="rating-input"><label for="q4b4" class="rating-label">4</label>\
+          <input type="radio" name="q4_b" id="q4b5" value="5" class="rating-input"><label for="q4b5" class="rating-label">5</label>\
+        </div>\
+      </div>\
+      <!-- \uc0\u28414 \u28414 \u22374 \u20811  -->\
+      <div class="rating-row">\
+        <div class="rating-row-label">\uc0\u28414 \u28414 \u22374 \u20811 </div>\
+        <div class="rating-dots">\
+          <input type="radio" name="q4_c" id="q4c1" value="1" class="rating-input"><label for="q4c1" class="rating-label">1</label>\
+          <input type="radio" name="q4_c" id="q4c2" value="2" class="rating-input"><label for="q4c2" class="rating-label">2</label>\
+          <input type="radio" name="q4_c" id="q4c3" value="3" class="rating-input"><label for="q4c3" class="rating-label">3</label>\
+          <input type="radio" name="q4_c" id="q4c4" value="4" class="rating-input"><label for="q4c4" class="rating-label">4</label>\
+          <input type="radio" name="q4_c" id="q4c5" value="5" class="rating-input"><label for="q4c5" class="rating-label">5</label>\
+        </div>\
+      </div>\
+      <!-- \uc0\u20581 \u29699  -->\
+      <div class="rating-row">\
+        <div class="rating-row-label">\uc0\u20581 \u29699 </div>\
+        <div class="rating-dots">\
+          <input type="radio" name="q4_d" id="q4d1" value="1" class="rating-input"><label for="q4d1" class="rating-label">1</label>\
+          <input type="radio" name="q4_d" id="q4d2" value="2" class="rating-input"><label for="q4d2" class="rating-label">2</label>\
+          <input type="radio" name="q4_d" id="q4d3" value="3" class="rating-input"><label for="q4d3" class="rating-label">3</label>\
+          <input type="radio" name="q4_d" id="q4d4" value="4" class="rating-input"><label for="q4d4" class="rating-label">4</label>\
+          <input type="radio" name="q4_d" id="q4d5" value="5" class="rating-input"><label for="q4d5" class="rating-label">5</label>\
+        </div>\
+      </div>\
+      <!-- \uc0\u25240 \u36820 \u36305  -->\
+      <div class="rating-row">\
+        <div class="rating-row-label">\uc0\u25240 \u36820 \u36305 </div>\
+        <div class="rating-dots">\
+          <input type="radio" name="q4_e" id="q4e1" value="1" class="rating-input"><label for="q4e1" class="rating-label">1</label>\
+          <input type="radio" name="q4_e" id="q4e2" value="2" class="rating-input"><label for="q4e2" class="rating-label">2</label>\
+          <input type="radio" name="q4_e" id="q4e3" value="3" class="rating-input"><label for="q4e3" class="rating-label">3</label>\
+          <input type="radio" name="q4_e" id="q4e4" value="4" class="rating-input"><label for="q4e4" class="rating-label">4</label>\
+          <input type="radio" name="q4_e" id="q4e5" value="5" class="rating-input"><label for="q4e5" class="rating-label">5</label>\
+        </div>\
+      </div>\
+      <div class="error-msg" id="err_q4">\uc0\u35531 \u28858 \u27599 \u20491 \u38364 \u21345 \u35413 \u20998 </div>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q4.</span>\uc0\u20320 \u26368 \u21916 \u27489 \u21738 \u20491 \u38364 \u21345 \u65311 </div>\
+      <div class="choices">\
+        <input type="radio" name="q5" id="q5_1" value="\uc0\u33729 \u33521 \u25361 \u25136 \u36093 " class="choice-input"><label for="q5_1" class="choice-label">\u33729 \u33521 \u25361 \u25136 \u36093 </label>\
+        <input type="radio" name="q5" id="q5_2" value="\uc0\u22235 \u38754 \u20843 \u32763 " class="choice-input"><label for="q5_2" class="choice-label">\u22235 \u38754 \u20843 \u32763 </label>\
+        <input type="radio" name="q5" id="q5_3" value="\uc0\u28414 \u28414 \u22374 \u20811 " class="choice-input"><label for="q5_3" class="choice-label">\u28414 \u28414 \u22374 \u20811 </label>\
+        <input type="radio" name="q5" id="q5_4" value="\uc0\u20581 \u29699 " class="choice-input"><label for="q5_4" class="choice-label">\u20581 \u29699 </label>\
+        <input type="radio" name="q5" id="q5_5" value="\uc0\u25240 \u36820 \u36305 " class="choice-input"><label for="q5_5" class="choice-label">\u25240 \u36820 \u36305 </label>\
+      </div>\
+      <div class="error-msg" id="err_q5">\uc0\u35531 \u36984 \u25799 \u19968 \u38917 </div>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q5.</span>\uc0\u20320 \u35258 \u24471 \u21738 \u20491 \u38364 \u21345 \u26368 \u38656 \u35201 \u25913 \u36914 \u65311 </div>\
+      <div class="choices">\
+        <input type="radio" name="q6" id="q6_1" value="\uc0\u33729 \u33521 \u25361 \u25136 \u36093 " class="choice-input"><label for="q6_1" class="choice-label">\u33729 \u33521 \u25361 \u25136 \u36093 </label>\
+        <input type="radio" name="q6" id="q6_2" value="\uc0\u22235 \u38754 \u20843 \u32763 " class="choice-input"><label for="q6_2" class="choice-label">\u22235 \u38754 \u20843 \u32763 </label>\
+        <input type="radio" name="q6" id="q6_3" value="\uc0\u28414 \u28414 \u22374 \u20811 " class="choice-input"><label for="q6_3" class="choice-label">\u28414 \u28414 \u22374 \u20811 </label>\
+        <input type="radio" name="q6" id="q6_4" value="\uc0\u20581 \u29699 " class="choice-input"><label for="q6_4" class="choice-label">\u20581 \u29699 </label>\
+        <input type="radio" name="q6" id="q6_5" value="\uc0\u25240 \u36820 \u36305 " class="choice-input"><label for="q6_5" class="choice-label">\u25240 \u36820 \u36305 </label>\
+        <input type="radio" name="q6" id="q6_6" value="\uc0\u37117 \u19981 \u38656 \u35201 " class="choice-input"><label for="q6_6" class="choice-label">\u37117 \u19981 \u38656 \u35201 </label>\
+      </div>\
+      <div class="error-msg" id="err_q6">\uc0\u35531 \u36984 \u25799 \u19968 \u38917 </div>\
+      <div class="sub-block">\
+        <div class="sub-label">\uc0\u21407 \u22240  <span class="optional">\u36984 \u22635 </span></div>\
+        <textarea name="q6_reason" rows="3" placeholder="\uc0\u31777 \u36848 \u25913 \u36914 \u21407 \u22240 ..."></textarea>\
+      </div>\
+    </div>\
+  </div>\
+\
+  <!-- \uc0\u9314  \u22580 \u22320 \u12289 \u27969 \u31243 \u33287 \u24460 \u21220  -->\
+  <div class="section">\
+    <div class="section-header">\
+      <div class="section-num">\uc0\u19977 </div>\
+      <div class="section-title">\uc0\u22580 \u22320 \u12289 \u27969 \u31243 \u33287 \u24460 \u21220 </div>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q6.</span>\uc0\u20320 \u23565 \u27963 \u21205 \u27969 \u31243 \u23433 \u25490 \u65288 \u31680 \u22863 \u12289 \u26178 \u38291 \u20998 \u37197 \u65289 \u30340 \u28415 \u24847 \u24230 \u65311 \u65288 1 \u19981 \u28415 \u24847  \u8594  5 \u28415 \u24847 \u65289 </div>\
+      <div class="simple-rating">\
+        <input type="radio" name="q7" id="q7_1" value="1" class="rating-input"><label for="q7_1" class="rating-label">1</label>\
+        <input type="radio" name="q7" id="q7_2" value="2" class="rating-input"><label for="q7_2" class="rating-label">2</label>\
+        <input type="radio" name="q7" id="q7_3" value="3" class="rating-input"><label for="q7_3" class="rating-label">3</label>\
+        <input type="radio" name="q7" id="q7_4" value="4" class="rating-input"><label for="q7_4" class="rating-label">4</label>\
+        <input type="radio" name="q7" id="q7_5" value="5" class="rating-input"><label for="q7_5" class="rating-label">5</label>\
+      </div>\
+      <div class="error-msg" id="err_q7">\uc0\u35531 \u35413 \u20998 </div>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q7.</span>\uc0\u20320 \u23565 \u22580 \u22320 \u65288 \u20449 \u32681 \u36939 \u21205 \u20013 \u24515 \u65289 \u30340 \u33298 \u36969 \u24230 \u33287 \u31354 \u38291 \u26159 \u21542 \u28415 \u24847 \u65311 \u65288 1 \u19981 \u28415 \u24847  \u8594  5 \u28415 \u24847 \u65289 </div>\
+      <div class="simple-rating">\
+        <input type="radio" name="q8" id="q8_1" value="1" class="rating-input"><label for="q8_1" class="rating-label">1</label>\
+        <input type="radio" name="q8" id="q8_2" value="2" class="rating-input"><label for="q8_2" class="rating-label">2</label>\
+        <input type="radio" name="q8" id="q8_3" value="3" class="rating-input"><label for="q8_3" class="rating-label">3</label>\
+        <input type="radio" name="q8" id="q8_4" value="4" class="rating-input"><label for="q8_4" class="rating-label">4</label>\
+        <input type="radio" name="q8" id="q8_5" value="5" class="rating-input"><label for="q8_5" class="rating-label">5</label>\
+      </div>\
+      <div class="error-msg" id="err_q8">\uc0\u35531 \u35413 \u20998 </div>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q8.</span>\uc0\u20320 \u23565 \u39184 \u40670 \u23433 \u25490 \u30340 \u28415 \u24847 \u24230 \u65311 \u65288 1 \u19981 \u28415 \u24847  \u8594  5 \u28415 \u24847 \u65289 </div>\
+      <div class="rating-row">\
+        <div class="rating-row-label">\uc0\u36093 \u21069 \u39321 \u34121 </div>\
+        <div class="rating-dots">\
+          <input type="radio" name="q9_a" id="q9a1" value="1" class="rating-input"><label for="q9a1" class="rating-label">1</label>\
+          <input type="radio" name="q9_a" id="q9a2" value="2" class="rating-input"><label for="q9a2" class="rating-label">2</label>\
+          <input type="radio" name="q9_a" id="q9a3" value="3" class="rating-input"><label for="q9a3" class="rating-label">3</label>\
+          <input type="radio" name="q9_a" id="q9a4" value="4" class="rating-input"><label for="q9a4" class="rating-label">4</label>\
+          <input type="radio" name="q9_a" id="q9a5" value="5" class="rating-input"><label for="q9a5" class="rating-label">5</label>\
+        </div>\
+      </div>\
+      <div class="rating-row">\
+        <div class="rating-row-label">\uc0\u21320 \u39184 \u22781 \u21496 \u39184 \u30418 </div>\
+        <div class="rating-dots">\
+          <input type="radio" name="q9_b" id="q9b1" value="1" class="rating-input"><label for="q9b1" class="rating-label">1</label>\
+          <input type="radio" name="q9_b" id="q9b2" value="2" class="rating-input"><label for="q9b2" class="rating-label">2</label>\
+          <input type="radio" name="q9_b" id="q9b3" value="3" class="rating-input"><label for="q9b3" class="rating-label">3</label>\
+          <input type="radio" name="q9_b" id="q9b4" value="4" class="rating-input"><label for="q9b4" class="rating-label">4</label>\
+          <input type="radio" name="q9_b" id="q9b5" value="5" class="rating-input"><label for="q9b5" class="rating-label">5</label>\
+        </div>\
+      </div>\
+      <div class="rating-row">\
+        <div class="rating-row-label">\uc0\u19979 \u21320 \u33590 \u65288 \u36019 \u34382 \u38622 \u25490 \u65289 </div>\
+        <div class="rating-dots">\
+          <input type="radio" name="q9_c" id="q9c1" value="1" class="rating-input"><label for="q9c1" class="rating-label">1</label>\
+          <input type="radio" name="q9_c" id="q9c2" value="2" class="rating-input"><label for="q9c2" class="rating-label">2</label>\
+          <input type="radio" name="q9_c" id="q9c3" value="3" class="rating-input"><label for="q9c3" class="rating-label">3</label>\
+          <input type="radio" name="q9_c" id="q9c4" value="4" class="rating-input"><label for="q9c4" class="rating-label">4</label>\
+          <input type="radio" name="q9_c" id="q9c5" value="5" class="rating-input"><label for="q9c5" class="rating-label">5</label>\
+        </div>\
+      </div>\
+      <div class="sub-block">\
+        <div class="sub-label">\uc0\u23565 \u39184 \u40670 \u26377 \u20160 \u40636 \u24314 \u35696 \u21966 \u65311 \u65288 \u36984 \u22635 \u65289 </div>\
+        <textarea name="q9_suggest" rows="2" placeholder="\uc0\u20363 \u22914 \u65306 \u24076 \u26395 \u26377 \u32032 \u39135 \u36984 \u38917 ..."></textarea>\
+      </div>\
+      <div class="error-msg" id="err_q9">\uc0\u35531 \u28858 \u27599 \u38917 \u39184 \u40670 \u35413 \u20998 </div>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q9.</span>\uc0\u36939 \u21205 \u19978 \u34915 \u33287 \u38263 \u35178 \u31561 \u27963 \u21205 \u21608 \u37002 \u20320 \u21916 \u27489 \u21966 \u65311 </div>\
+      <div class="rating-row" style="margin-bottom:8px;">\
+        <div class="rating-row-label">\uc0\u36939 \u21205 \u25490 \u27735 \u34923 </div>\
+        <div class="choices">\
+          <input type="radio" name="q10_a" id="q10a1" value="\uc0\u38750 \u24120 \u21916 \u27489 " class="choice-input"><label for="q10a1" class="choice-label">\u38750 \u24120 \u21916 \u27489 </label>\
+          <input type="radio" name="q10_a" id="q10a2" value="\uc0\u21916 \u27489 " class="choice-input"><label for="q10a2" class="choice-label">\u21916 \u27489 </label>\
+          <input type="radio" name="q10_a" id="q10a3" value="\uc0\u26222 \u36890 " class="choice-input"><label for="q10a3" class="choice-label">\u26222 \u36890 </label>\
+          <input type="radio" name="q10_a" id="q10a4" value="\uc0\u19981 \u22826 \u21916 \u27489 " class="choice-input"><label for="q10a4" class="choice-label">\u19981 \u22826 \u21916 \u27489 </label>\
+        </div>\
+      </div>\
+      <div class="rating-row">\
+        <div class="rating-row-label">\uc0\u36939 \u21205 \u38263 \u35178 </div>\
+        <div class="choices">\
+          <input type="radio" name="q10_b" id="q10b1" value="\uc0\u38750 \u24120 \u21916 \u27489 " class="choice-input"><label for="q10b1" class="choice-label">\u38750 \u24120 \u21916 \u27489 </label>\
+          <input type="radio" name="q10_b" id="q10b2" value="\uc0\u21916 \u27489 " class="choice-input"><label for="q10b2" class="choice-label">\u21916 \u27489 </label>\
+          <input type="radio" name="q10_b" id="q10b3" value="\uc0\u26222 \u36890 " class="choice-input"><label for="q10b3" class="choice-label">\u26222 \u36890 </label>\
+          <input type="radio" name="q10_b" id="q10b4" value="\uc0\u19981 \u22826 \u21916 \u27489 " class="choice-input"><label for="q10b4" class="choice-label">\u19981 \u22826 \u21916 \u27489 </label>\
+        </div>\
+      </div>\
+      <div class="error-msg" id="err_q10">\uc0\u35531 \u21508 \u36984 \u25799 \u19968 \u38917 </div>\
+    </div>\
+  </div>\
+\
+  <!-- \uc0\u9315  \u20027 \u25345 \u33287 \u29694 \u22580 \u27683 \u27675  -->\
+  <div class="section">\
+    <div class="section-header">\
+      <div class="section-num">\uc0\u22235 </div>\
+      <div class="section-title">\uc0\u20027 \u25345 \u33287 \u29694 \u22580 \u27683 \u27675 </div>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q10.</span>\uc0\u20320 \u23565 \u20027 \u25345 \u20154 \u24118 \u21205 \u29694 \u22580 \u27683 \u27675 \u30340 \u34920 \u29694 \u28415 \u24847 \u21966 \u65311 \u65288 1 \u19981 \u28415 \u24847  \u8594  5 \u28415 \u24847 \u65289 </div>\
+      <div class="simple-rating">\
+        <input type="radio" name="q11" id="q11_1" value="1" class="rating-input"><label for="q11_1" class="rating-label">1</label>\
+        <input type="radio" name="q11" id="q11_2" value="2" class="rating-input"><label for="q11_2" class="rating-label">2</label>\
+        <input type="radio" name="q11" id="q11_3" value="3" class="rating-input"><label for="q11_3" class="rating-label">3</label>\
+        <input type="radio" name="q11" id="q11_4" value="4" class="rating-input"><label for="q11_4" class="rating-label">4</label>\
+        <input type="radio" name="q11" id="q11_5" value="5" class="rating-input"><label for="q11_5" class="rating-label">5</label>\
+      </div>\
+      <div class="error-msg" id="err_q11">\uc0\u35531 \u35413 \u20998 </div>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q11.</span>\uc0\u20320 \u35258 \u24471 \u29694 \u22580 \u30340 \u31478 \u29229 \u27683 \u27675 \u22914 \u20309 \u65311 </div>\
+      <div class="choices">\
+        <input type="radio" name="q12" id="q12_1" value="\uc0\u22826 \u31478 \u29229 \u65292 \u26377 \u40670 \u22739 \u21147 " class="choice-input"><label for="q12_1" class="choice-label">\u22826 \u31478 \u29229 \u65292 \u26377 \u40670 \u22739 \u21147 </label>\
+        <input type="radio" name="q12" id="q12_2" value="\uc0\u21083 \u22909 \u65292 \u26377 \u27963 \u21147 \u21448 \u36629 \u39686 " class="choice-input"><label for="q12_2" class="choice-label">\u21083 \u22909 \u65292 \u26377 \u27963 \u21147 \u21448 \u36629 \u39686 </label>\
+        <input type="radio" name="q12" id="q12_3" value="\uc0\u22826 \u36629 \u39686 \u65292 \u19981 \u22816 \u21050 \u28608 " class="choice-input"><label for="q12_3" class="choice-label">\u22826 \u36629 \u39686 \u65292 \u19981 \u22816 \u21050 \u28608 </label>\
+      </div>\
+      <div class="error-msg" id="err_q12">\uc0\u35531 \u36984 \u25799 \u19968 \u38917 </div>\
+    </div>\
+  </div>\
+\
+  <!-- \uc0\u9316  \u38283 \u25918 \u22238 \u39243  -->\
+  <div class="section">\
+    <div class="section-header">\
+      <div class="section-num">\uc0\u20116 </div>\
+      <div class="section-title">\uc0\u38283 \u25918 \u22238 \u39243 </div>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q12.</span>\uc0\u36889 \u27425 \u27963 \u21205 \u20013 \u65292 \u26377 \u27794 \u26377 \u35731 \u20320 \u21360 \u35937 \u26368 \u28145 \u21051 \u30340 \u26178 \u21051 \u25110 \u29872 \u31680 \u65311 <span class="optional">\u36984 \u22635 </span></div>\
+      <textarea name="q13" rows="3" placeholder="\uc0\u35531 \u20998 \u20139 \u20320 \u30340 \u31934 \u24425 \u26178 \u21051 ..."></textarea>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q13.</span>\uc0\u27963 \u21205 \u36942 \u31243 \u20013 \u65292 \u20320 \u25110 \u20320 \u30340 \u38538 \u21451 \u26377 \u30332 \u29983 \u20219 \u20309 \u36939 \u21205 \u20663 \u23475 \u25110 \u19981 \u36969 \u21966 \u65311 </div>\
+      <div class="choices">\
+        <input type="radio" name="q14_injury" id="q14i1" value="\uc0\u27794 \u26377 " class="choice-input"><label for="q14i1" class="choice-label">\u27794 \u26377 </label>\
+        <input type="radio" name="q14_injury" id="q14i2" value="\uc0\u26377 \u36629 \u20663 \u65288 \u25830 \u20663 \u12289 \u25387 \u20663 \u65289 " class="choice-input"><label for="q14i2" class="choice-label">\u26377 \u36629 \u20663 \u65288 \u25830 \u20663 \u12289 \u25387 \u20663 \u65289 </label>\
+        <input type="radio" name="q14_injury" id="q14i3" value="\uc0\u26377 \u21463 \u20663 \u65288 \u21507 \u34367 \u34068 \u12289 \u28132 \u38738 \u12289 \u39592 \u25240 \u65289 " class="choice-input"><label for="q14i3" class="choice-label">\u26377 \u21463 \u20663 \u65288 \u21507 \u34367 \u34068 \u12289 \u28132 \u38738 \u12289 \u39592 \u25240 \u65289 </label>\
+      </div>\
+      <div class="error-msg" id="err_q14_injury">\uc0\u35531 \u36984 \u25799 \u19968 \u38917 </div>\
+      <div class="sub-block" id="injuryDetail" style="display:none;">\
+        <div class="sub-label">\uc0\u35531 \u31777 \u36848 \u30332 \u29983 \u30340 \u24773 \u27841 \u65288 \u26041 \u20415 \u25105 \u20497 \u25913 \u21892 \u23433 \u20840 \u25514 \u26045 \u65289 <span class="optional">\u36984 \u22635 </span></div>\
+        <textarea name="q14_injury_detail" rows="3" placeholder="\uc0\u20363 \u22914 \u65306 \u31532 \u20108 \u38364 \u21345 \u26178 \u25197 \u20663 \u33139 \u36381 ..."></textarea>\
+      </div>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q14.</span>\uc0\u22914 \u26524 \u26126 \u24180 \u20877 \u33289 \u36774 \u65292 \u20320 \u26368 \u24076 \u26395 \u25913 \u35722 \u25110 \u26032 \u22686 \u20160 \u40636 \u65311 <span class="optional">\u36984 \u22635 </span></div>\
+      <textarea name="q15_next" rows="3" placeholder="\uc0\u20363 \u22914 \u65306 \u24076 \u26395 \u21152 \u20837 \u22296 \u39636 \u25509 \u21147 \u36093 ..."></textarea>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q15.</span>\uc0\u35258 \u24471 \u21738 \u20491 \u29872 \u31680 \u26368 \u19981 \u26377 \u36259 \u25110 \u21487 \u20197 \u35519 \u25972 \u65311 <span class="optional">\u36984 \u22635 </span></div>\
+      <textarea name="q14" rows="3" placeholder="\uc0\u20320 \u30340 \u24314 \u35696 \u23565 \u25105 \u20497 \u24456 \u37325 \u35201 ..."></textarea>\
+    </div>\
+\
+    <div class="q-card">\
+      <div class="q-label"><span class="q-num">Q16.</span>\uc0\u32102 \u31119 \u22996 \u26371 \u25110 \u27963 \u21205 \u31820 \u36774 \u20154 \u21729 \u30340 \u35441 <span class="optional">\u36984 \u22635 </span></div>\
+      <textarea name="q16" rows="4" placeholder="\uc0\u24863 \u35613 \u20320 \u30340 \u40723 \u21237 \u25110 \u24314 \u35696 \u65292 \u25105 \u20497 \u37117 \u26371 \u35469 \u30495 \u30475 \u30340  \u55357 \u56492 "></textarea>\
+    </div>\
+  </div>\
+\
+  <!-- Submit -->\
+  <div class="submit-wrap">\
+    <button type="submit" class="submit-btn" id="submitBtn">\uc0\u36865 \u20986 \u22238 \u39243  \u9654 </button>\
+    <div class="submit-note">\uc0\u22238 \u35206 \u23559 \u21311 \u21517 \u24409 \u25972 \u65292 \u20677 \u20379 \u20839 \u37096 \u25913 \u21892 \u21443 \u32771 </div>\
+    <div id="submitError" style="display:none;color:#ff3c5f;font-size:12px;margin-top:10px;"></div>\
+  </div>\
+\
+</form>\
+</div>\
+\
+<script>\
+  // \uc0\u9472 \u9472  \u20663 \u23475 \u35443 \u24773 \u26781 \u20214 \u39023 \u31034  \u9472 \u9472 \
+  document.querySelectorAll('input[name="q14_injury"]').forEach(el => \{\
+    el.addEventListener('change', () => \{\
+      document.getElementById('injuryDetail').style.display =\
+        el.value !== '\uc0\u27794 \u26377 ' ? 'block' : 'none';\
+    \});\
+  \});\
+\
+  // \uc0\u9472 \u9472  \u24517 \u22635 \u27396 \u20301 \u65288 \u21547 \u38988 \u30446 \u21517 \u31281 \u65292 \u29992 \u26044  Toast \u25552 \u31034 \u65289 \u9472 \u9472 \
+  const REQUIRED = [\
+    \{ key: 'q1',         label: 'Q1 \uc0\u20320 \u23565 \u36889 \u27425 \u36939 \u21205 \u26371 \u30340 \u25972 \u39636 \u28415 \u24847 \u24230 \u65311 ',              type: 'radio',       name: 'q1' \},\
+    \{ key: 'q2',         label: 'Q2 \uc0\u36889 \u27425 \u27963 \u21205 \u35731 \u20320 \u23565 \u21516 \u20107 \u30340 \u35469 \u35672 \u25110 \u24863 \u24773 \u26377 \u21152 \u28145 \u21966 \u65311 ',   type: 'radio',       name: 'q3' \},\
+    \{ key: 'q4',         label: 'Q3 \uc0\u35531 \u28858 \u20197 \u19979 \u21508 \u38364 \u21345 \u35413 \u20998 ',                         type: 'multi-radio', names: ['q4_a','q4_b','q4_c','q4_d','q4_e'] \},\
+    \{ key: 'q5',         label: 'Q4 \uc0\u20320 \u26368 \u21916 \u27489 \u21738 \u20491 \u38364 \u21345 \u65311 ',                         type: 'radio',       name: 'q5' \},\
+    \{ key: 'q6',         label: 'Q5 \uc0\u20320 \u35258 \u24471 \u21738 \u20491 \u38364 \u21345 \u26368 \u38656 \u35201 \u25913 \u36914 \u65311 ',                 type: 'radio',       name: 'q6' \},\
+    \{ key: 'q7',         label: 'Q6 \uc0\u20320 \u23565 \u27963 \u21205 \u27969 \u31243 \u23433 \u25490 \u30340 \u28415 \u24847 \u24230 \u65311 ',                 type: 'radio',       name: 'q7' \},\
+    \{ key: 'q8',         label: 'Q7 \uc0\u20320 \u23565 \u22580 \u22320 \u30340 \u33298 \u36969 \u24230 \u33287 \u31354 \u38291 \u26159 \u21542 \u28415 \u24847 \u65311 ',           type: 'radio',       name: 'q8' \},\
+    \{ key: 'q9',         label: 'Q8 \uc0\u20320 \u23565 \u39184 \u40670 \u23433 \u25490 \u30340 \u28415 \u24847 \u24230 \u65311 ',                     type: 'multi-radio', names: ['q9_a','q9_b','q9_c'] \},\
+    \{ key: 'q10',        label: 'Q9 \uc0\u36939 \u21205 \u19978 \u34915 \u33287 \u38263 \u35178 \u31561 \u27963 \u21205 \u21608 \u37002 \u20320 \u21916 \u27489 \u21966 \u65311 ',         type: 'multi-radio', names: ['q10_a','q10_b'] \},\
+    \{ key: 'q11',        label: 'Q10 \uc0\u20320 \u23565 \u20027 \u25345 \u20154 \u24118 \u21205 \u29694 \u22580 \u27683 \u27675 \u30340 \u34920 \u29694 \u28415 \u24847 \u21966 \u65311 ',      type: 'radio',       name: 'q11' \},\
+    \{ key: 'q12',        label: 'Q11 \uc0\u20320 \u35258 \u24471 \u29694 \u22580 \u30340 \u31478 \u29229 \u27683 \u27675 \u22914 \u20309 \u65311 ',                type: 'radio',       name: 'q12' \},\
+    \{ key: 'q14_injury', label: 'Q13 \uc0\u27963 \u21205 \u36942 \u31243 \u20013 \u26377 \u30332 \u29983 \u20219 \u20309 \u36939 \u21205 \u20663 \u23475 \u25110 \u19981 \u36969 \u21966 \u65311 ',    type: 'radio',       name: 'q14_injury' \},\
+  ];\
+\
+  function getRadioVal(name) \{\
+    const el = document.querySelector(`input[name="$\{name\}"]:checked`);\
+    return el ? el.value : '';\
+  \}\
+\
+  // \uc0\u9472 \u9472  Toast \u25552 \u31034  \u9472 \u9472 \
+  let toastTimer = null;\
+  function showToast(msg) \{\
+    let toast = document.getElementById('validToast');\
+    if (!toast) \{\
+      toast = document.createElement('div');\
+      toast.id = 'validToast';\
+      toast.style.cssText = `\
+        position:fixed; top:20px; left:50%; transform:translateX(-50%);\
+        background:#ff3c5f; color:#fff; font-size:12px; font-weight:700;\
+        padding:12px 20px; z-index:9999; letter-spacing:0.5px; line-height:1.5;\
+        clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);\
+        box-shadow:0 4px 20px rgba(255,60,95,0.45);\
+        transition:opacity 0.3s; max-width:90vw; text-align:center;\
+      `;\
+      document.body.appendChild(toast);\
+    \}\
+    toast.innerHTML = msg;\
+    toast.style.opacity = '1';\
+    clearTimeout(toastTimer);\
+    toastTimer = setTimeout(() => \{ toast.style.opacity = '0'; \}, 3500);\
+  \}\
+\
+  // \uc0\u9472 \u9472  \u39511 \u35657  \u9472 \u9472 \
+  function validate() \{\
+    let firstFailCard = null;\
+    let firstFailLabel = '';\
+\
+    for (const cfg of REQUIRED) \{\
+      const errEl = document.getElementById(`err_$\{cfg.key\}`);\
+      let pass = true;\
+\
+      if (cfg.type === 'radio') \{\
+        pass = !!getRadioVal(cfg.name);\
+      \} else if (cfg.type === 'multi-radio') \{\
+        pass = cfg.names.every(n => !!getRadioVal(n));\
+      \}\
+\
+      if (errEl) errEl.style.display = pass ? 'none' : 'block';\
+\
+      if (!pass && !firstFailCard) \{\
+        firstFailCard = errEl ? errEl.closest('.q-card') : null;\
+        firstFailLabel = cfg.label;\
+      \}\
+    \}\
+\
+    if (firstFailCard) \{\
+      showToast(`\uc0\u9888 \u65039  \u24517 \u22635 \u27396 \u20301 \u26410 \u23436 \u25104 <br><span style="font-weight:400;font-size:11px;">$\{firstFailLabel\}</span>`);\
+      firstFailCard.scrollIntoView(\{ behavior: 'smooth', block: 'center' \});\
+      return false;\
+    \}\
+    return true;\
+  \}\
+\
+  // \uc0\u9472 \u9472  \u25910 \u38598 \u36039 \u26009 \u65288 \u36984 \u22635 \u38988 \u31354 \u30333 \u20063 \u29031 \u25910 \u65289 \u9472 \u9472 \
+  function collectData() \{\
+    return \{\
+      timestamp:      new Date().toLocaleString('zh-TW', \{ timeZone: 'Asia/Taipei' \}),\
+      q1:             getRadioVal('q1'),\
+      q3:             getRadioVal('q3'),\
+      q4_\uc0\u33729 \u33521 \u25361 \u25136 \u36093 :  getRadioVal('q4_a'),\
+      q4_\uc0\u22235 \u38754 \u20843 \u32763 :    getRadioVal('q4_b'),\
+      q4_\uc0\u28414 \u28414 \u22374 \u20811 :    getRadioVal('q4_c'),\
+      q4_\uc0\u20581 \u29699 :        getRadioVal('q4_d'),\
+      q4_\uc0\u25240 \u36820 \u36305 :      getRadioVal('q4_e'),\
+      q5:             getRadioVal('q5'),\
+      q6_\uc0\u38364 \u21345 :        getRadioVal('q6'),\
+      q6_\uc0\u21407 \u22240 :        document.querySelector('textarea[name="q6_reason"]')?.value.trim() || '',\
+      q7:             getRadioVal('q7'),\
+      q8:             getRadioVal('q8'),\
+      q9_\uc0\u39321 \u34121 :        getRadioVal('q9_a'),\
+      q9_\uc0\u22781 \u21496 :        getRadioVal('q9_b'),\
+      q9_\uc0\u38622 \u25490 :        getRadioVal('q9_c'),\
+      q9_\uc0\u24314 \u35696 :        document.querySelector('textarea[name="q9_suggest"]')?.value.trim() || '',\
+      q10_\uc0\u25490 \u27735 \u34923 :     getRadioVal('q10_a'),\
+      q10_\uc0\u38263 \u35178 :       getRadioVal('q10_b'),\
+      q11:            getRadioVal('q11'),\
+      q12:            getRadioVal('q12'),\
+      q13:            document.querySelector('textarea[name="q13"]')?.value.trim() || '',\
+      q14_\uc0\u20663 \u23475 \u29376 \u27841 :   getRadioVal('q14_injury'),\
+      q14_\uc0\u20663 \u23475 \u35498 \u26126 :   document.querySelector('textarea[name="q14_injury_detail"]')?.value.trim() || '',\
+      q15_\uc0\u26126 \u24180 \u24314 \u35696 :   document.querySelector('textarea[name="q15_next"]')?.value.trim() || '',\
+      q16_\uc0\u21487 \u35519 \u25972 \u29872 \u31680 : document.querySelector('textarea[name="q14"]')?.value.trim() || '',\
+      q17_\uc0\u32102 \u31119 \u22996 \u26371 :   document.querySelector('textarea[name="q16"]')?.value.trim() || '',\
+    \};\
+  \}\
+\
+  // \uc0\u9472 \u9472  GAS URL \u9472 \u9472 \
+  const GAS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';\
+\
+  // \uc0\u9472 \u9472  Submit \u25353 \u37397  emoji cursor \u9472 \u9472 \
+  const submitEmojiCursor = document.getElementById('submitEmojiCursor');\
+  const submitBtn = document.getElementById('submitBtn');\
+\
+  submitBtn.addEventListener('mouseenter', () => \{\
+    submitEmojiCursor.style.display = 'block';\
+    submitBtn.style.cursor = 'none';\
+  \});\
+  submitBtn.addEventListener('mouseleave', () => \{\
+    submitEmojiCursor.style.display = 'none';\
+    submitBtn.style.cursor = 'pointer';\
+  \});\
+  submitBtn.addEventListener('mousemove', (e) => \{\
+    submitEmojiCursor.style.left = e.clientX + 'px';\
+    submitEmojiCursor.style.top  = e.clientY + 'px';\
+  \});\
+\
+  // \uc0\u9472 \u9472  Thanks modal \u9472 \u9472 \
+  function openThanksModal() \{\
+    document.getElementById('thanksModal').style.display = 'flex';\
+  \}\
+  function closeThanksModal() \{\
+    document.getElementById('thanksModal').style.display = 'none';\
+  \}\
+  document.getElementById('thanksCloseBtn').addEventListener('click', closeThanksModal);\
+  document.getElementById('thanksModal').addEventListener('click', function(e) \{\
+    if (e.target === this) closeThanksModal();\
+  \});\
+\
+  // \uc0\u9472 \u9472  \u36865 \u20986  \u9472 \u9472 \
+  document.getElementById('surveyForm').addEventListener('submit', (e) => \{\
+    e.preventDefault();\
+    if (!validate()) return;\
+\
+    // \uc0\u39511 \u35657 \u36890 \u36942 \u65306 \u31435 \u21363 \u39023 \u31034 \u24863 \u35613  modal\
+    submitBtn.disabled = true;\
+    submitBtn.textContent = '\uc0\u24050 \u36865 \u20986  \u10003 ';\
+    openThanksModal();\
+\
+    // \uc0\u32972 \u26223 \u36865  GAS\u65288 \u36984 \u22635 \u31354 \u30333 \u20063 \u19968 \u36215 \u36865 \u65289 \
+    if (GAS_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') \{\
+      try \{\
+        fetch(GAS_URL, \{\
+          method: 'POST',\
+          mode: 'no-cors',\
+          headers: \{ 'Content-Type': 'application/json' \},\
+          body: JSON.stringify(collectData()),\
+        \});\
+      \} catch (err) \{\
+        console.warn('GAS \uc0\u36865 \u20986 \u22833 \u25943 \u65306 ', err);\
+      \}\
+    \}\
+  \});\
+</script>\
+\
+</body>\
+</html>}
