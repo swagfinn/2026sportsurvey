@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>體能之巔・活動回饋問卷</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: rgba(255,255,255,0.06);
+    --accent: #e8ff00;
+    --accent2: #ff3c5f;
+    --text: #f0f0f0;
+    --muted: #666;
+    --input-bg: #0e0e16;
+    --input-border: rgba(255,255,255,0.1);
+    --input-focus: rgba(232,255,0,0.35);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232,255,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,255,0,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 60px 24px 40px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 5px 16px;
+    margin-bottom: 18px;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', 'Arial Black', 'Impact', sans-serif;
+    font-size: clamp(52px, 12vw, 100px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    color: var(--text);
+  }
+
+  .hero-title span { color: var(--accent); display: block; }
+
+  .hero-desc {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-desc em {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  /* ── Form container ── */
+  .form-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* ── Section ── */
+  .section {
+    margin-bottom: 12px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    position: relative;
+  }
+
+  .section-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .section-num {
+    font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+    font-size: 13px;
+    color: #000;
+    background: var(--accent);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    clip-path: polygon(3px 0%, 100% 0%, calc(100% - 3px) 100%, 0% 100%);
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  /* ── Question card ── */
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 20px 24px;
+  }
+
+  .q-card + .q-card {
+    border-top: 1px solid var(--border);
+  }
+
+  .q-card:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .q-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 14px;
+    line-height: 1.6;
+    display: flex;
+    gap: 8px;
+  }
+
+  .q-num {
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .optional {
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 400;
+    margin-left: 4px;
+  }
+
+  /* ── Radio / Choice pills ── */
+  .choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .choice-input { display: none; }
+
+  .choice-label {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    font-size: 12px;
+    color: #aaa;
+    border: 1px solid var(--input-border);
+    cursor: pointer;
+    transition: all 0.18s;
+    clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+    user-select: none;
+  }
+
+  .choice-input:checked + .choice-label {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+
+  .choice-label:hover {
+    border-color: rgba(232,255,0,0.4);
+    color: var(--text);
+  }
+
+  /* ── Star / Number rating ── */
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .rating-row-label {
+    font-size: 12px;
+    color: #aaa;
+    min-width: 140px;
+    flex-shrink: 0;
+  }
+
+  .rating-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .rating-input { display: none; }
+
+  .rating-label {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #555;
+    border: 1px solid rgba(255,255,255,0.08);
+    cursor: pointer;
+    transition: all 0.15s;
+    clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+  }
+
+  .rating-input:checked + .rating-label {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  .rating-label:hover {
+    border-color: rgba(232,255,0,0.4);
+    color: var(--text);
+  }
+
+  /* Simple 1–5 row (no sub-label) */
+  .simple-rating {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  /* ── Textarea / Input ── */
+  textarea, input[type="text"] {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 12px 14px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+    line-height: 1.6;
+    margin-top: 6px;
+  }
+
+  textarea:focus, input[type="text"]:focus {
+    border-color: rgba(232,255,0,0.5);
+    box-shadow: 0 0 0 2px rgba(232,255,0,0.08);
+  }
+
+  textarea::placeholder, input[type="text"]::placeholder {
+    color: #3a3a4a;
+  }
+
+  /* Sub-question block */
+  .sub-block {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .sub-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Submit ── */
+  .submit-wrap {
+    text-align: center;
+    padding-top: 32px;
+  }
+
+  .submit-btn {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #000;
+    background: var(--accent);
+    border: none;
+    padding: 14px 48px;
+    cursor: pointer;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .submit-btn:hover { opacity: 0.88; transform: translateY(-2px); }
+  .submit-btn:active { transform: translateY(0); }
+  .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* Submit emoji cursor */
+  #submitEmojiCursor {
+    position: fixed;
+    pointer-events: none;
+    font-size: 28px;
+    z-index: 9999;
+    transform: translate(10px, 10px);
+    display: none;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+    animation: floatUp 0.6s infinite alternate ease-in-out;
+  }
+
+  @keyframes floatUp {
+    from { transform: translate(10px, 10px); }
+    to   { transform: translate(10px, 2px); }
+  }
+
+  /* Thank you modal */
+  #thanksModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.82);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .thanks-box {
+    background: #16161f;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-top: 2px solid var(--accent);
+    width: min(520px, 100%);
+    padding: 32px 28px 28px;
+    text-align: center;
+    animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.88); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+
+  .thanks-icon { font-size: 44px; margin-bottom: 14px; }
+
+  .thanks-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .thanks-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 20px 0;
+  }
+
+  .thanks-cta-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .thanks-cta-desc {
+    font-size: 13px;
+    color: #aaa;
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+
+  .thanks-link-btn {
+    display: inline-block;
+    padding: 11px 28px;
+    background: var(--accent);
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    clip-path: polygon(7px 0%,100% 0%,calc(100% - 7px) 100%,0% 100%);
+    transition: opacity 0.2s;
+  }
+
+  .thanks-link-btn:hover { opacity: 0.85; }
+
+  .thanks-close-btn {
+    display: block;
+    margin: 14px auto 0;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .thanks-close-btn:hover { color: var(--text); }
+
+  .submit-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 12px;
+    line-height: 1.7;
+  }
+
+  /* ── Success screen ── */
+  #successScreen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 200;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+  }
+
+  .success-icon {
+    font-size: 56px;
+    margin-bottom: 20px;
+    animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+
+  .success-title {
+    font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+    font-size: 52px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .success-sub {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 360px;
+  }
+
+  /* ── Error msg ── */
+  .error-msg {
+    display: none;
+    color: #ff3c5f;
+    font-size: 11px;
+    margin-top: 6px;
+  }
+
+  /* ── Divider ── */
+  .section-gap { height: 24px; }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .hero { padding: 40px 16px 28px; }
+    .form-wrap { padding: 0 12px 60px; }
+    .q-card { padding: 16px; }
+    .section-header { padding: 16px; }
+    .rating-row-label { min-width: 110px; font-size: 11px; }
+    .rating-label { width: 30px; height: 30px; font-size: 12px; }
+    .choice-label { font-size: 11px; padding: 6px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Submit emoji cursor -->
+<div id="submitEmojiCursor">🦸</div>
+
+<!-- Thank you modal -->
+<div id="thanksModal">
+  <div class="thanks-box">
+    <div class="thanks-icon">🎉</div>
+    <div class="thanks-title">感謝您的反饋<br>我們已收到您的回覆囉！</div>
+    <div class="thanks-divider"></div>
+    <div class="thanks-cta-label">✦ 神隊友感謝牆 ✦</div>
+    <div class="thanks-cta-desc">
+      運動會結束了，但感謝不該停下來！<br>
+      把這次想感謝的隊友、夥伴都留在感謝牆上吧 🙌
+    </div>
+    <a href="https://events.swag.app/swag_thanks/" target="_blank" class="thanks-link-btn">前往神隊友感謝牆 ▶</a>
+    <button class="thanks-close-btn" id="thanksCloseBtn">關閉</button>
+  </div>
+</div>
+
+<!-- Success screen -->
+<div id="successScreen">
+  <div class="success-icon">🏆</div>
+  <div class="success-title">感謝回饋！</div>
+  <div class="success-sub">你的意見已成功送出<br>我們會讓下一屆更棒 💪<br><br>
+    <span style="color:var(--accent);font-size:11px;letter-spacing:1px;">SWAG 福委會 · 體能之巔</span>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-badge">第二屆運動會 · June 2026</div>
+  <h1 class="hero-title">體能<span>之巔</span></h1>
+  <p class="hero-desc">感謝你今天的參與！請花 <em>3 分鐘</em> 填寫以下問題<br>幫助我們讓下一屆更棒 🙌</p>
+</section>
+
+<!-- Form -->
+<div class="form-wrap">
+<form id="surveyForm" novalidate>
+
+  <!-- ① 整體體驗 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">一</div>
+      <div class="section-title">整體體驗</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q1.</span>你對這次運動會的整體滿意度？</div>
+      <div class="choices">
+        <input type="radio" name="q1" id="q1_1" value="非常不滿意" class="choice-input">
+        <label for="q1_1" class="choice-label">非常不滿意</label>
+        <input type="radio" name="q1" id="q1_2" value="不滿意" class="choice-input">
+        <label for="q1_2" class="choice-label">不滿意</label>
+        <input type="radio" name="q1" id="q1_3" value="普通" class="choice-input">
+        <label for="q1_3" class="choice-label">普通</label>
+        <input type="radio" name="q1" id="q1_4" value="滿意" class="choice-input">
+        <label for="q1_4" class="choice-label">滿意</label>
+        <input type="radio" name="q1" id="q1_5" value="非常滿意" class="choice-input">
+        <label for="q1_5" class="choice-label">非常滿意</label>
+      </div>
+      <div class="error-msg" id="err_q1">請選擇一項</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q2.</span>這次活動讓你對同事的認識或感情有加深嗎？</div>
+      <div class="choices">
+        <input type="radio" name="q3" id="q3_1" value="完全沒有" class="choice-input">
+        <label for="q3_1" class="choice-label">完全沒有</label>
+        <input type="radio" name="q3" id="q3_2" value="一點點" class="choice-input">
+        <label for="q3_2" class="choice-label">一點點</label>
+        <input type="radio" name="q3" id="q3_3" value="有些" class="choice-input">
+        <label for="q3_3" class="choice-label">有些</label>
+        <input type="radio" name="q3" id="q3_4" value="很明顯" class="choice-input">
+        <label for="q3_4" class="choice-label">很明顯</label>
+      </div>
+      <div class="error-msg" id="err_q2">請選擇一項</div>
+    </div>
+  </div>
+
+  <!-- ② 關卡內容 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">二</div>
+      <div class="section-title">關卡內容</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q3.</span>請為以下各關卡評分（1 不滿意 → 5 滿意）</div>
+      <!-- 菁英挑戰賽 -->
+      <div class="rating-row">
+        <div class="rating-row-label">菁英挑戰賽</div>
+        <div class="rating-dots">
+          <input type="radio" name="q4_a" id="q4a1" value="1" class="rating-input"><label for="q4a1" class="rating-label">1</label>
+          <input type="radio" name="q4_a" id="q4a2" value="2" class="rating-input"><label for="q4a2" class="rating-label">2</label>
+          <input type="radio" name="q4_a" id="q4a3" value="3" class="rating-input"><label for="q4a3" class="rating-label">3</label>
+          <input type="radio" name="q4_a" id="q4a4" value="4" class="rating-input"><label for="q4a4" class="rating-label">4</label>
+          <input type="radio" name="q4_a" id="q4a5" value="5" class="rating-input"><label for="q4a5" class="rating-label">5</label>
+        </div>
+      </div>
+      <!-- 四面八翻 -->
+      <div class="rating-row">
+        <div class="rating-row-label">四面八翻</div>
+        <div class="rating-dots">
+          <input type="radio" name="q4_b" id="q4b1" value="1" class="rating-input"><label for="q4b1" class="rating-label">1</label>
+          <input type="radio" name="q4_b" id="q4b2" value="2" class="rating-input"><label for="q4b2" class="rating-label">2</label>
+          <input type="radio" name="q4_b" id="q4b3" value="3" class="rating-input"><label for="q4b3" class="rating-label">3</label>
+          <input type="radio" name="q4_b" id="q4b4" value="4" class="rating-input"><label for="q4b4" class="rating-label">4</label>
+          <input type="radio" name="q4_b" id="q4b5" value="5" class="rating-input"><label for="q4b5" class="rating-label">5</label>
+        </div>
+      </div>
+      <!-- 滾滾坦克 -->
+      <div class="rating-row">
+        <div class="rating-row-label">滾滾坦克</div>
+        <div class="rating-dots">
+          <input type="radio" name="q4_c" id="q4c1" value="1" class="rating-input"><label for="q4c1" class="rating-label">1</label>
+          <input type="radio" name="q4_c" id="q4c2" value="2" class="rating-input"><label for="q4c2" class="rating-label">2</label>
+          <input type="radio" name="q4_c" id="q4c3" value="3" class="rating-input"><label for="q4c3" class="rating-label">3</label>
+          <input type="radio" name="q4_c" id="q4c4" value="4" class="rating-input"><label for="q4c4" class="rating-label">4</label>
+          <input type="radio" name="q4_c" id="q4c5" value="5" class="rating-input"><label for="q4c5" class="rating-label">5</label>
+        </div>
+      </div>
+      <!-- 健球 -->
+      <div class="rating-row">
+        <div class="rating-row-label">健球</div>
+        <div class="rating-dots">
+          <input type="radio" name="q4_d" id="q4d1" value="1" class="rating-input"><label for="q4d1" class="rating-label">1</label>
+          <input type="radio" name="q4_d" id="q4d2" value="2" class="rating-input"><label for="q4d2" class="rating-label">2</label>
+          <input type="radio" name="q4_d" id="q4d3" value="3" class="rating-input"><label for="q4d3" class="rating-label">3</label>
+          <input type="radio" name="q4_d" id="q4d4" value="4" class="rating-input"><label for="q4d4" class="rating-label">4</label>
+          <input type="radio" name="q4_d" id="q4d5" value="5" class="rating-input"><label for="q4d5" class="rating-label">5</label>
+        </div>
+      </div>
+      <!-- 折返跑 -->
+      <div class="rating-row">
+        <div class="rating-row-label">折返跑</div>
+        <div class="rating-dots">
+          <input type="radio" name="q4_e" id="q4e1" value="1" class="rating-input"><label for="q4e1" class="rating-label">1</label>
+          <input type="radio" name="q4_e" id="q4e2" value="2" class="rating-input"><label for="q4e2" class="rating-label">2</label>
+          <input type="radio" name="q4_e" id="q4e3" value="3" class="rating-input"><label for="q4e3" class="rating-label">3</label>
+          <input type="radio" name="q4_e" id="q4e4" value="4" class="rating-input"><label for="q4e4" class="rating-label">4</label>
+          <input type="radio" name="q4_e" id="q4e5" value="5" class="rating-input"><label for="q4e5" class="rating-label">5</label>
+        </div>
+      </div>
+      <div class="error-msg" id="err_q4">請為每個關卡評分</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q4.</span>你最喜歡哪個關卡？</div>
+      <div class="choices">
+        <input type="radio" name="q5" id="q5_1" value="菁英挑戰賽" class="choice-input"><label for="q5_1" class="choice-label">菁英挑戰賽</label>
+        <input type="radio" name="q5" id="q5_2" value="四面八翻" class="choice-input"><label for="q5_2" class="choice-label">四面八翻</label>
+        <input type="radio" name="q5" id="q5_3" value="滾滾坦克" class="choice-input"><label for="q5_3" class="choice-label">滾滾坦克</label>
+        <input type="radio" name="q5" id="q5_4" value="健球" class="choice-input"><label for="q5_4" class="choice-label">健球</label>
+        <input type="radio" name="q5" id="q5_5" value="折返跑" class="choice-input"><label for="q5_5" class="choice-label">折返跑</label>
+      </div>
+      <div class="error-msg" id="err_q5">請選擇一項</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q5.</span>你覺得哪個關卡最需要改進？</div>
+      <div class="choices">
+        <input type="radio" name="q6" id="q6_1" value="菁英挑戰賽" class="choice-input"><label for="q6_1" class="choice-label">菁英挑戰賽</label>
+        <input type="radio" name="q6" id="q6_2" value="四面八翻" class="choice-input"><label for="q6_2" class="choice-label">四面八翻</label>
+        <input type="radio" name="q6" id="q6_3" value="滾滾坦克" class="choice-input"><label for="q6_3" class="choice-label">滾滾坦克</label>
+        <input type="radio" name="q6" id="q6_4" value="健球" class="choice-input"><label for="q6_4" class="choice-label">健球</label>
+        <input type="radio" name="q6" id="q6_5" value="折返跑" class="choice-input"><label for="q6_5" class="choice-label">折返跑</label>
+        <input type="radio" name="q6" id="q6_6" value="都不需要" class="choice-input"><label for="q6_6" class="choice-label">都不需要</label>
+      </div>
+      <div class="error-msg" id="err_q6">請選擇一項</div>
+      <div class="sub-block">
+        <div class="sub-label">原因 <span class="optional">選填</span></div>
+        <textarea name="q6_reason" rows="3" placeholder="簡述改進原因..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 場地、流程與後勤 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">三</div>
+      <div class="section-title">場地、流程與後勤</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q6.</span>你對活動流程安排（節奏、時間分配）的滿意度？（1 不滿意 → 5 滿意）</div>
+      <div class="simple-rating">
+        <input type="radio" name="q7" id="q7_1" value="1" class="rating-input"><label for="q7_1" class="rating-label">1</label>
+        <input type="radio" name="q7" id="q7_2" value="2" class="rating-input"><label for="q7_2" class="rating-label">2</label>
+        <input type="radio" name="q7" id="q7_3" value="3" class="rating-input"><label for="q7_3" class="rating-label">3</label>
+        <input type="radio" name="q7" id="q7_4" value="4" class="rating-input"><label for="q7_4" class="rating-label">4</label>
+        <input type="radio" name="q7" id="q7_5" value="5" class="rating-input"><label for="q7_5" class="rating-label">5</label>
+      </div>
+      <div class="error-msg" id="err_q7">請評分</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q7.</span>你對場地（信義運動中心）的舒適度與空間是否滿意？（1 不滿意 → 5 滿意）</div>
+      <div class="simple-rating">
+        <input type="radio" name="q8" id="q8_1" value="1" class="rating-input"><label for="q8_1" class="rating-label">1</label>
+        <input type="radio" name="q8" id="q8_2" value="2" class="rating-input"><label for="q8_2" class="rating-label">2</label>
+        <input type="radio" name="q8" id="q8_3" value="3" class="rating-input"><label for="q8_3" class="rating-label">3</label>
+        <input type="radio" name="q8" id="q8_4" value="4" class="rating-input"><label for="q8_4" class="rating-label">4</label>
+        <input type="radio" name="q8" id="q8_5" value="5" class="rating-input"><label for="q8_5" class="rating-label">5</label>
+      </div>
+      <div class="error-msg" id="err_q8">請評分</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q8.</span>你對餐點安排的滿意度？（1 不滿意 → 5 滿意）</div>
+      <div class="rating-row">
+        <div class="rating-row-label">賽前香蕉</div>
+        <div class="rating-dots">
+          <input type="radio" name="q9_a" id="q9a1" value="1" class="rating-input"><label for="q9a1" class="rating-label">1</label>
+          <input type="radio" name="q9_a" id="q9a2" value="2" class="rating-input"><label for="q9a2" class="rating-label">2</label>
+          <input type="radio" name="q9_a" id="q9a3" value="3" class="rating-input"><label for="q9a3" class="rating-label">3</label>
+          <input type="radio" name="q9_a" id="q9a4" value="4" class="rating-input"><label for="q9a4" class="rating-label">4</label>
+          <input type="radio" name="q9_a" id="q9a5" value="5" class="rating-input"><label for="q9a5" class="rating-label">5</label>
+        </div>
+      </div>
+      <div class="rating-row">
+        <div class="rating-row-label">午餐壽司餐盒</div>
+        <div class="rating-dots">
+          <input type="radio" name="q9_b" id="q9b1" value="1" class="rating-input"><label for="q9b1" class="rating-label">1</label>
+          <input type="radio" name="q9_b" id="q9b2" value="2" class="rating-input"><label for="q9b2" class="rating-label">2</label>
+          <input type="radio" name="q9_b" id="q9b3" value="3" class="rating-input"><label for="q9b3" class="rating-label">3</label>
+          <input type="radio" name="q9_b" id="q9b4" value="4" class="rating-input"><label for="q9b4" class="rating-label">4</label>
+          <input type="radio" name="q9_b" id="q9b5" value="5" class="rating-input"><label for="q9b5" class="rating-label">5</label>
+        </div>
+      </div>
+      <div class="rating-row">
+        <div class="rating-row-label">下午茶（貳虎雞排）</div>
+        <div class="rating-dots">
+          <input type="radio" name="q9_c" id="q9c1" value="1" class="rating-input"><label for="q9c1" class="rating-label">1</label>
+          <input type="radio" name="q9_c" id="q9c2" value="2" class="rating-input"><label for="q9c2" class="rating-label">2</label>
+          <input type="radio" name="q9_c" id="q9c3" value="3" class="rating-input"><label for="q9c3" class="rating-label">3</label>
+          <input type="radio" name="q9_c" id="q9c4" value="4" class="rating-input"><label for="q9c4" class="rating-label">4</label>
+          <input type="radio" name="q9_c" id="q9c5" value="5" class="rating-input"><label for="q9c5" class="rating-label">5</label>
+        </div>
+      </div>
+      <div class="sub-block">
+        <div class="sub-label">對餐點有什麼建議嗎？（選填）</div>
+        <textarea name="q9_suggest" rows="2" placeholder="例如：希望有素食選項..."></textarea>
+      </div>
+      <div class="error-msg" id="err_q9">請為每項餐點評分</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q9.</span>運動上衣與長襪等活動周邊你喜歡嗎？</div>
+      <div class="rating-row" style="margin-bottom:8px;">
+        <div class="rating-row-label">運動排汗衫</div>
+        <div class="choices">
+          <input type="radio" name="q10_a" id="q10a1" value="非常喜歡" class="choice-input"><label for="q10a1" class="choice-label">非常喜歡</label>
+          <input type="radio" name="q10_a" id="q10a2" value="喜歡" class="choice-input"><label for="q10a2" class="choice-label">喜歡</label>
+          <input type="radio" name="q10_a" id="q10a3" value="普通" class="choice-input"><label for="q10a3" class="choice-label">普通</label>
+          <input type="radio" name="q10_a" id="q10a4" value="不太喜歡" class="choice-input"><label for="q10a4" class="choice-label">不太喜歡</label>
+        </div>
+      </div>
+      <div class="rating-row">
+        <div class="rating-row-label">運動長襪</div>
+        <div class="choices">
+          <input type="radio" name="q10_b" id="q10b1" value="非常喜歡" class="choice-input"><label for="q10b1" class="choice-label">非常喜歡</label>
+          <input type="radio" name="q10_b" id="q10b2" value="喜歡" class="choice-input"><label for="q10b2" class="choice-label">喜歡</label>
+          <input type="radio" name="q10_b" id="q10b3" value="普通" class="choice-input"><label for="q10b3" class="choice-label">普通</label>
+          <input type="radio" name="q10_b" id="q10b4" value="不太喜歡" class="choice-input"><label for="q10b4" class="choice-label">不太喜歡</label>
+        </div>
+      </div>
+      <div class="error-msg" id="err_q10">請各選擇一項</div>
+    </div>
+  </div>
+
+  <!-- ④ 主持與現場氣氛 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">四</div>
+      <div class="section-title">主持與現場氣氛</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q10.</span>你對主持人帶動現場氣氛的表現滿意嗎？（1 不滿意 → 5 滿意）</div>
+      <div class="simple-rating">
+        <input type="radio" name="q11" id="q11_1" value="1" class="rating-input"><label for="q11_1" class="rating-label">1</label>
+        <input type="radio" name="q11" id="q11_2" value="2" class="rating-input"><label for="q11_2" class="rating-label">2</label>
+        <input type="radio" name="q11" id="q11_3" value="3" class="rating-input"><label for="q11_3" class="rating-label">3</label>
+        <input type="radio" name="q11" id="q11_4" value="4" class="rating-input"><label for="q11_4" class="rating-label">4</label>
+        <input type="radio" name="q11" id="q11_5" value="5" class="rating-input"><label for="q11_5" class="rating-label">5</label>
+      </div>
+      <div class="error-msg" id="err_q11">請評分</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q11.</span>你覺得現場的競爭氣氛如何？</div>
+      <div class="choices">
+        <input type="radio" name="q12" id="q12_1" value="太競爭，有點壓力" class="choice-input"><label for="q12_1" class="choice-label">太競爭，有點壓力</label>
+        <input type="radio" name="q12" id="q12_2" value="剛好，有活力又輕鬆" class="choice-input"><label for="q12_2" class="choice-label">剛好，有活力又輕鬆</label>
+        <input type="radio" name="q12" id="q12_3" value="太輕鬆，不夠刺激" class="choice-input"><label for="q12_3" class="choice-label">太輕鬆，不夠刺激</label>
+      </div>
+      <div class="error-msg" id="err_q12">請選擇一項</div>
+    </div>
+  </div>
+
+  <!-- ⑤ 開放回饋 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">五</div>
+      <div class="section-title">開放回饋</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q12.</span>這次活動中，有沒有讓你印象最深刻的時刻或環節？<span class="optional">選填</span></div>
+      <textarea name="q13" rows="3" placeholder="請分享你的精彩時刻..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q13.</span>活動過程中，你或你的隊友有發生任何運動傷害或不適嗎？</div>
+      <div class="choices">
+        <input type="radio" name="q14_injury" id="q14i1" value="沒有" class="choice-input"><label for="q14i1" class="choice-label">沒有</label>
+        <input type="radio" name="q14_injury" id="q14i2" value="有輕傷（擦傷、挫傷）" class="choice-input"><label for="q14i2" class="choice-label">有輕傷（擦傷、挫傷）</label>
+        <input type="radio" name="q14_injury" id="q14i3" value="有受傷（吃蘿蔔、淤青、骨折）" class="choice-input"><label for="q14i3" class="choice-label">有受傷（吃蘿蔔、淤青、骨折）</label>
+      </div>
+      <div class="error-msg" id="err_q14_injury">請選擇一項</div>
+      <div class="sub-block" id="injuryDetail" style="display:none;">
+        <div class="sub-label">請簡述發生的情況（方便我們改善安全措施）<span class="optional">選填</span></div>
+        <textarea name="q14_injury_detail" rows="3" placeholder="例如：第二關卡時扭傷腳踝..."></textarea>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q14.</span>如果明年再舉辦，你最希望改變或新增什麼？<span class="optional">選填</span></div>
+      <textarea name="q15_next" rows="3" placeholder="例如：希望加入團體接力賽..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q15.</span>覺得哪個環節最不有趣或可以調整？<span class="optional">選填</span></div>
+      <textarea name="q14" rows="3" placeholder="你的建議對我們很重要..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label"><span class="q-num">Q16.</span>給福委會或活動籌辦人員的話<span class="optional">選填</span></div>
+      <textarea name="q16" rows="4" placeholder="感謝你的鼓勵或建議，我們都會認真看的 💬"></textarea>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="submit-wrap">
+    <button type="submit" class="submit-btn" id="submitBtn">送出回饋 ▶</button>
+    <div class="submit-note">回覆將匿名彙整，僅供內部改善參考</div>
+    <div id="submitError" style="display:none;color:#ff3c5f;font-size:12px;margin-top:10px;"></div>
+  </div>
+
+</form>
+</div>
+
+<script>
+  // ── 傷害詳情條件顯示 ──
+  document.querySelectorAll('input[name="q14_injury"]').forEach(el => {
+    el.addEventListener('change', () => {
+      document.getElementById('injuryDetail').style.display =
+        el.value !== '沒有' ? 'block' : 'none';
+    });
+  });
+
+  // ── 必填欄位（含題目名稱，用於 Toast 提示）──
+  const REQUIRED = [
+    { key: 'q1',         label: 'Q1 你對這次運動會的整體滿意度？',              type: 'radio',       name: 'q1' },
+    { key: 'q2',         label: 'Q2 這次活動讓你對同事的認識或感情有加深嗎？',   type: 'radio',       name: 'q3' },
+    { key: 'q4',         label: 'Q3 請為以下各關卡評分',                         type: 'multi-radio', names: ['q4_a','q4_b','q4_c','q4_d','q4_e'] },
+    { key: 'q5',         label: 'Q4 你最喜歡哪個關卡？',                         type: 'radio',       name: 'q5' },
+    { key: 'q6',         label: 'Q5 你覺得哪個關卡最需要改進？',                 type: 'radio',       name: 'q6' },
+    { key: 'q7',         label: 'Q6 你對活動流程安排的滿意度？',                 type: 'radio',       name: 'q7' },
+    { key: 'q8',         label: 'Q7 你對場地的舒適度與空間是否滿意？',           type: 'radio',       name: 'q8' },
+    { key: 'q9',         label: 'Q8 你對餐點安排的滿意度？',                     type: 'multi-radio', names: ['q9_a','q9_b','q9_c'] },
+    { key: 'q10',        label: 'Q9 運動上衣與長襪等活動周邊你喜歡嗎？',         type: 'multi-radio', names: ['q10_a','q10_b'] },
+    { key: 'q11',        label: 'Q10 你對主持人帶動現場氣氛的表現滿意嗎？',      type: 'radio',       name: 'q11' },
+    { key: 'q12',        label: 'Q11 你覺得現場的競爭氣氛如何？',                type: 'radio',       name: 'q12' },
+    { key: 'q14_injury', label: 'Q13 活動過程中有發生任何運動傷害或不適嗎？',    type: 'radio',       name: 'q14_injury' },
+  ];
+
+  function getRadioVal(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : '';
+  }
+
+  // ── Toast 提示 ──
+  let toastTimer = null;
+  function showToast(msg) {
+    let toast = document.getElementById('validToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'validToast';
+      toast.style.cssText = `
+        position:fixed; top:20px; left:50%; transform:translateX(-50%);
+        background:#ff3c5f; color:#fff; font-size:12px; font-weight:700;
+        padding:12px 20px; z-index:9999; letter-spacing:0.5px; line-height:1.5;
+        clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+        box-shadow:0 4px 20px rgba(255,60,95,0.45);
+        transition:opacity 0.3s; max-width:90vw; text-align:center;
+      `;
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = msg;
+    toast.style.opacity = '1';
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 3500);
+  }
+
+  // ── 驗證 ──
+  function validate() {
+    let firstFailCard = null;
+    let firstFailLabel = '';
+
+    for (const cfg of REQUIRED) {
+      const errEl = document.getElementById(`err_${cfg.key}`);
+      let pass = true;
+
+      if (cfg.type === 'radio') {
+        pass = !!getRadioVal(cfg.name);
+      } else if (cfg.type === 'multi-radio') {
+        pass = cfg.names.every(n => !!getRadioVal(n));
+      }
+
+      if (errEl) errEl.style.display = pass ? 'none' : 'block';
+
+      if (!pass && !firstFailCard) {
+        firstFailCard = errEl ? errEl.closest('.q-card') : null;
+        firstFailLabel = cfg.label;
+      }
+    }
+
+    if (firstFailCard) {
+      showToast(`⚠️ 必填欄位未完成<br><span style="font-weight:400;font-size:11px;">${firstFailLabel}</span>`);
+      firstFailCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return false;
+    }
+    return true;
+  }
+
+  // ── 收集資料（選填題空白也照收）──
+  function collectData() {
+    return {
+      timestamp:      new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }),
+      q1:             getRadioVal('q1'),
+      q3:             getRadioVal('q3'),
+      q4_菁英挑戰賽:  getRadioVal('q4_a'),
+      q4_四面八翻:    getRadioVal('q4_b'),
+      q4_滾滾坦克:    getRadioVal('q4_c'),
+      q4_健球:        getRadioVal('q4_d'),
+      q4_折返跑:      getRadioVal('q4_e'),
+      q5:             getRadioVal('q5'),
+      q6_關卡:        getRadioVal('q6'),
+      q6_原因:        document.querySelector('textarea[name="q6_reason"]')?.value.trim() || '',
+      q7:             getRadioVal('q7'),
+      q8:             getRadioVal('q8'),
+      q9_香蕉:        getRadioVal('q9_a'),
+      q9_壽司:        getRadioVal('q9_b'),
+      q9_雞排:        getRadioVal('q9_c'),
+      q9_建議:        document.querySelector('textarea[name="q9_suggest"]')?.value.trim() || '',
+      q10_排汗衫:     getRadioVal('q10_a'),
+      q10_長襪:       getRadioVal('q10_b'),
+      q11:            getRadioVal('q11'),
+      q12:            getRadioVal('q12'),
+      q13:            document.querySelector('textarea[name="q13"]')?.value.trim() || '',
+      q14_傷害狀況:   getRadioVal('q14_injury'),
+      q14_傷害說明:   document.querySelector('textarea[name="q14_injury_detail"]')?.value.trim() || '',
+      q15_明年建議:   document.querySelector('textarea[name="q15_next"]')?.value.trim() || '',
+      q16_可調整環節: document.querySelector('textarea[name="q14"]')?.value.trim() || '',
+      q17_給福委會:   document.querySelector('textarea[name="q16"]')?.value.trim() || '',
+    };
+  }
+
+  // ── GAS URL ──
+  const GAS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+  // ── Submit 按鈕 emoji cursor ──
+  const submitEmojiCursor = document.getElementById('submitEmojiCursor');
+  const submitBtn = document.getElementById('submitBtn');
+
+  submitBtn.addEventListener('mouseenter', () => {
+    submitEmojiCursor.style.display = 'block';
+    submitBtn.style.cursor = 'none';
+  });
+  submitBtn.addEventListener('mouseleave', () => {
+    submitEmojiCursor.style.display = 'none';
+    submitBtn.style.cursor = 'pointer';
+  });
+  submitBtn.addEventListener('mousemove', (e) => {
+    submitEmojiCursor.style.left = e.clientX + 'px';
+    submitEmojiCursor.style.top  = e.clientY + 'px';
+  });
+
+  // ── Thanks modal ──
+  function openThanksModal() {
+    document.getElementById('thanksModal').style.display = 'flex';
+  }
+  function closeThanksModal() {
+    document.getElementById('thanksModal').style.display = 'none';
+  }
+  document.getElementById('thanksCloseBtn').addEventListener('click', closeThanksModal);
+  document.getElementById('thanksModal').addEventListener('click', function(e) {
+    if (e.target === this) closeThanksModal();
+  });
+
+  // ── 送出 ──
+  document.getElementById('surveyForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    // 驗證通過：立即顯示感謝 modal
+    submitBtn.disabled = true;
+    submitBtn.textContent = '已送出 ✓';
+    openThanksModal();
+
+    // 背景送 GAS（選填空白也一起送）
+    if (GAS_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+      try {
+        fetch(GAS_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(collectData()),
+        });
+      } catch (err) {
+        console.warn('GAS 送出失敗：', err);
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
