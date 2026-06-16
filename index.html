@@ -638,11 +638,11 @@
   <div class="gate-box">
     <div class="gate-icon">🏃</div>
     <div class="gate-title">2026 第二屆運動會 回饋問卷</div>
-    <div class="gate-sub">請輸入 @swag.live 信箱作題</div>
+    <div class="gate-sub">請輸入 @swag.live / @mybudget.ltd 信箱作題</div>
     <div class="gate-input-wrap">
-      <input type="email" id="gateEmailInput" class="gate-input" placeholder="yourname@swag.live" autocomplete="email">
+      <input type="email" id="gateEmailInput" class="gate-input" autocomplete="email">
     </div>
-    <div class="gate-error" id="gateError">⚠️ 請填寫公司信箱（@swag.live）才能查看問卷</div>
+    <div class="gate-error" id="gateError">⚠️ 請填寫公司信箱（@swag.live 或 @mybudget.ltd）才能查看問卷</div>
     <button class="gate-btn" id="gateSubmitBtn">出發 ▶</button>
     <div class="gate-note">EMAIL 僅用於內部人員驗證</div>
   </div>
@@ -1009,9 +1009,43 @@
   // ── Email Gate ──
   let verifiedEmail = '';
 
+  // 特殊帳號白名單
+  const SPECIAL_ACCOUNTS = [
+    'sam', 'bogi', 'lynn', 'pot', 'amy',
+    'bill.h', 'abby', 'maimai', 'suyu.c'
+  ];
+
   function validateEmail(email) {
-    return email.trim().toLowerCase().endsWith('@swag.live') &&
-           email.trim().length > '@swag.live'.length;
+    const raw = email.trim().toLowerCase();
+
+    // 必須是 @swag.live 或 @mybudget.ltd 結尾
+    const isSwag     = raw.endsWith('@swag.live');
+    const isBudget   = raw.endsWith('@mybudget.ltd');
+    if (!isSwag && !isBudget) return false;
+
+    // @mybudget.ltd 只做基本格式驗證（本地端非空即可）
+    if (isBudget) {
+      const local = raw.replace('@mybudget.ltd', '');
+      return local.length > 0;
+    }
+
+    // 以下針對 @swag.live
+    const local = raw.replace('@swag.live', '');
+    if (local.length === 0) return false;
+
+    // 規則 3-1：純數字 → 禁止
+    if (/^\d+$/.test(local)) return false;
+
+    // 規則 1：特殊白名單帳號 → 允許
+    if (SPECIAL_ACCOUNTS.includes(local)) return true;
+
+    // 規則 2：常規格式「英文名.中文姓氏羅馬拼音」
+    // 必須包含小數點，且兩側都是英文字母（2字以上）
+    if (/^[a-z]{2,}\.[a-z]{2,}$/.test(local)) return true;
+
+    // 規則 3-2：單純亂打或重複字元 → 禁止
+    // 沒有小數點、非白名單 → 視為不合法
+    return false;
   }
 
   function openSurvey() {
